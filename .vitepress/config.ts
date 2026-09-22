@@ -19,6 +19,7 @@ export default withMermaid(
                 text: 'Skills',
                 items: [
                     { text: '🧭 技能中心', link: '/skills/' },
+                    { text: '⚡ Anthropic 官方技能体系', link: '/skills/anthropic/' },
                     { text: '🛠️ Matt Pocock 技能套件', link: '/skills/mattpocock/' }
                 ]
             },
@@ -63,6 +64,16 @@ export default withMermaid(
                         { text: '🔍 质量把控与排障审查', link: '/skills/mattpocock/review-quality' },
                         { text: '🤝 协同交接与辅助工具', link: '/skills/mattpocock/collaboration' },
                         { text: '⚙️ 工程初始化与配置规范', link: '/skills/mattpocock/setup' }
+                    ]
+                },
+                {
+                    text: 'Anthropic 技能规范',
+                    collapsed: false,
+                    items: [
+                        { text: '📖 开放标准与技术导读', link: '/skills/anthropic/' },
+                        { text: '📚 官方 19 个技能全景矩阵', link: '/skills/anthropic/catalog' },
+                        { text: '🛠️ 技能开发与离线校验', link: '/skills/anthropic/authoring' },
+                        { text: '⚡ 运行时与执行引擎', link: '/skills/anthropic/runtime' }
                     ]
                 }
             ],

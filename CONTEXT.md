@@ -54,3 +54,22 @@ _Avoid_: Summary, chat history, conversation recap
 智能体对代码或文档的所有操作默认仅在本地工作区完成自检，严禁未经人类显式授权擅自触发 Git 提交与远程推送。详见 `docs/adr/0001-local-first-git-commit-policy.md`。
 _Avoid_: Auto-commit, silent push, background sync
 
+### 智能体技能标准与生态 (Agent Skills Standard & Ecosystem)
+
+**Agent Skill (智能体技能)**:
+遵循 `agentskills.io` 开放标准的自包含文件夹，由 `SKILL.md`（元数据与核心指引）、可选的 `scripts/`、`references/` 和 `assets/` 组成，供 AI 智能体动态加载以完成专业化任务。
+_Avoid_: Plugin, tool pack, function extension, action
+
+**Progressive Disclosure (渐进式披露)**:
+智能体按需分阶段加载技能资源的技术机制：启动时仅加载元数据（~100 Tokens），激活时载入指令主体（< 5000 Tokens），执行时按需读取外部资源，从而最小化上下文窗口消耗。
+_Avoid_: Lazy loading, on-demand prompt, dynamic import
+
+**Skill Contract (技能契约)**:
+在 `SKILL.md` 头部由 YAML Frontmatter 定义的形式化约束规范，涵盖 `name`、`description`、`compatibility`、`metadata` 与 `allowed-tools` 等核心字段。
+_Avoid_: Header config, skill config, frontmatter schema
+
+**Skill Validator (技能校验器)**:
+基于官方 `skills-ref` 规范库对自研技能包的目录结构、命名合法性及 Frontmatter 契约进行端到端静态校验的工程工具。
+_Avoid_: Linter, syntax checker, schema tester
+
+
