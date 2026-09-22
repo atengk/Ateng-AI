@@ -33,12 +33,23 @@ export default defineConfig({
         sidebar: {
             '/skills/': [
                 {
-                    text: 'Matt Pocock',
-                    collapsed: false,
+                    text: 'Skills 概览',
                     items: [
-                        {text: '快速开始', link: '/skills/mattpocock/'},
+                        { text: '技能中心', link: '/skills/' }
                     ]
                 },
+                {
+                    text: 'Matt Pocock 技能套件',
+                    collapsed: false,
+                    items: [
+                        { text: '套件全景与速查', link: '/skills/mattpocock/' },
+                        { text: '需求推演与任务规划', link: '/skills/mattpocock/planning' },
+                        { text: '架构设计与工程编码', link: '/skills/mattpocock/engineering' },
+                        { text: '质量把控与排障审查', link: '/skills/mattpocock/review-quality' },
+                        { text: '协同交接与辅助工具', link: '/skills/mattpocock/collaboration' },
+                        { text: '工程初始化与配置规范', link: '/skills/mattpocock/setup' }
+                    ]
+                }
             ],
         },
 
