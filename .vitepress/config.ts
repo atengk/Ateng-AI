@@ -20,7 +20,8 @@ export default withMermaid(
                 items: [
                     { text: '🧭 技能中心', link: '/skills/' },
                     { text: '⚡ Anthropic 官方技能体系', link: '/skills/anthropic/' },
-                    { text: '🛠️ Matt Pocock 技能套件', link: '/skills/mattpocock/' }
+                    { text: '🛠️ Matt Pocock 技能套件', link: '/skills/mattpocock/' },
+                    { text: '🦸 Superpowers 自动化交付', link: '/skills/superpowers/' }
                 ]
             },
             { text: 'MCP', link: '/mcp/' },
@@ -52,6 +53,16 @@ export default withMermaid(
                     text: 'Skills 概览',
                     items: [
                         { text: '🏠 技能中心大厅', link: '/skills/' }
+                    ]
+                },
+                {
+                    text: 'Superpowers 自动化交付',
+                    collapsed: false,
+                    items: [
+                        { text: '🦸 全景导读与核心原理', link: '/skills/superpowers/' },
+                        { text: '🔄 端到端研发工作流与技能矩阵', link: '/skills/superpowers/workflow' },
+                        { text: '💻 多宿主安装与运行时集成', link: '/skills/superpowers/installation' },
+                        { text: '🎯 实战进阶与工程最佳实践', link: '/skills/superpowers/best-practices' }
                     ]
                 },
                 {
