@@ -1,7 +1,9 @@
 import {defineConfig} from 'vitepress'
+import {withMermaid} from 'vitepress-plugin-mermaid'
 
 // https://vitepress.dev/reference/site-config
-export default defineConfig({
+export default withMermaid(
+    defineConfig({
     base: '/Ateng-AI',
     title: "AI 技术网站",
     description: "",
@@ -160,4 +162,5 @@ export default defineConfig({
     },
     // 死链处理策略
     ignoreDeadLinks: true,
-})
+}))
+
