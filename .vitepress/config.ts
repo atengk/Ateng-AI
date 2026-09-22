@@ -13,7 +13,8 @@ export default withMermaid(
 
         // https://vitepress.dev/reference/default-theme-config
         nav: [
-            {text: '首页', link: '/'},
+            { text: '首页', link: '/' },
+            { text: 'Agent', link: '/agent/' },
             {
                 text: 'Skills',
                 items: [
@@ -21,6 +22,9 @@ export default withMermaid(
                     { text: '🛠️ Matt Pocock 技能套件', link: '/skills/mattpocock/' }
                 ]
             },
+            { text: 'MCP', link: '/mcp/' },
+            { text: '大模型', link: '/llm/' },
+            { text: 'RAG', link: '/rag/' },
             {
                 text: '关于',
                 items: [
@@ -34,6 +38,14 @@ export default withMermaid(
         ],
 
         sidebar: {
+            '/agent/': [
+                {
+                    text: 'AI Agent',
+                    items: [
+                        { text: '🤖 Agent 概览', link: '/agent/' }
+                    ]
+                }
+            ],
             '/skills/': [
                 {
                     text: 'Skills 概览',
@@ -51,6 +63,30 @@ export default withMermaid(
                         { text: '🔍 质量把控与排障审查', link: '/skills/mattpocock/review-quality' },
                         { text: '🤝 协同交接与辅助工具', link: '/skills/mattpocock/collaboration' },
                         { text: '⚙️ 工程初始化与配置规范', link: '/skills/mattpocock/setup' }
+                    ]
+                }
+            ],
+            '/mcp/': [
+                {
+                    text: 'MCP 协议',
+                    items: [
+                        { text: '🔌 MCP 概览', link: '/mcp/' }
+                    ]
+                }
+            ],
+            '/llm/': [
+                {
+                    text: '本地大模型',
+                    items: [
+                        { text: '🧠 大模型概览', link: '/llm/' }
+                    ]
+                }
+            ],
+            '/rag/': [
+                {
+                    text: 'RAG 知识库',
+                    items: [
+                        { text: '📚 RAG 概览', link: '/rag/' }
                     ]
                 }
             ],
