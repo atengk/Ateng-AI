@@ -49,3 +49,8 @@ _Avoid_: Task description, issue body, prompt instruction
 **Handoff Document (交接文档)**:
 将长会话历史提炼压缩为包含已达共识、未决事项与下一会话精确目标的结构化交接说明书。
 _Avoid_: Summary, chat history, conversation recap
+
+**Local-First Execution (本地优先执行)**:
+智能体对代码或文档的所有操作默认仅在本地工作区完成自检，严禁未经人类显式授权擅自触发 Git 提交与远程推送。详见 `docs/adr/0001-local-first-git-commit-policy.md`。
+_Avoid_: Auto-commit, silent push, background sync
+
