@@ -1,206 +1,288 @@
-# Matt Pocock 工业级工程技能套件全景导读
+# Matt Pocock Skills 全景导读与快速入门指南
 
 | 属性 | 详情 |
 | :--- | :--- |
-| **文档类型** | 技能套件全景导读 (Overview & Catalog) |
+| **文档类型** | 全景导读 / 技术指南 |
 | **当前状态** | 已归档 (Accepted) |
 | **作者** | Ateng |
-| **创建日期** | 2026-09-22 |
-| **关联系统/模块** | Ateng-AI / Skills / Matt Pocock |
+| **创建日期** | 2026-09-23 |
+| **关联系统/模块** | Matt Pocock Skills / Index |
 
 ---
 
-## 一、套件背景与设计哲学
+## 1. 真实软件工程的范式转移 (Paradigm Shift)
 
-在现代生成式人工智能（Generative AI）驱动的软件工程实践中，传统“基于单次 Prompt 进行大段代码生成”的范式正面临严峻挑战。随着代码库规模与业务复杂度的增长，开发者频繁遭受**幻觉级联堆叠（Hallucination Compounding）**、**架构隐形腐化（Architecture Erosion）**以及**长上下文记忆衰退（Context Saturation）**的困扰。智能体如果缺乏确定性的工程规则约束，极易生成表面语法正确、实则破坏深层系统一致性的“脆弱代码”。
+随着大语言模型（LLM）在软件研发领域的深度渗透，生成代码的门槛被大幅拉低。然而，以无序提示、黑盒全自动生成为代表的“氛围写代码 (Vibe Coding)”正在快速撞上工程天花板。Matt Pocock 提出的 Agent Skills 体系，正是为了将主流软件工程数十年来沉淀的核心纪律引入 AI 辅助研发，推动智能体协作回归严谨的“真实软件工程 (Real Engineering)”。
 
-为了攻克上述工程痛点，著名技术专家 Matt Pocock 提炼了一套**面向工业级 AI Agent 研发的闭环方法论**。这套方法论不仅是一组工具函数的集合，更是将传统高水平软件工程实践（如敏捷垂直切片、领域驱动设计、测试驱动开发、双轴审查）与现代智能体认知架构深度融合的系统化方案。其核心设计哲学由以下三大支柱构成：
+### 1.1 氛围写代码 (Vibe Coding) 的四大失败陷阱
 
-### 1. 预先推演与消除幻觉 (Pre-Implementation Grilling)
-- **拒绝盲目编码**：智能体在接触业务代码前，必须接受无死角的严苛盘问（Grilling）。通过多轮启发式质询，强迫开发者和智能体厘清边界条件、异常分支、失败回滚与性能预期。
-- **高信度溯源验证**：对于技术选型与 API 使用，严格依赖一手权威信源（Primary Sources）进行深入调研，从源头杜绝语言模型基于概率生成的“虚构 API”与过时用法。
-- **概念与契约固化**：在编码前提取通用语言（Ubiquitous Language）并写入领域术语表与 ADR（架构决策记录），使方案在落笔编码前就具备数学与逻辑层面的自洽性。
+在缺乏严密工程契约与流程约束的环境中，开发者与智能体协作时普遍面临以下四种致命缺陷：
 
-### 2. 状态机驱动与离散化流转 (State Machine Transitions)
-- **研发流程状态化**：研发活动被建模为严谨的角色分流状态机。每个 Issue 或 Pull Request 都清晰流转于标准化生命周期标签（如 `needs-triage` -> `ready-for-agent` -> `ready-for-human` -> `wontfix`）。
-- **无状态离散演进**：将庞大、模糊的宏观目标切分为单个独立会话可稳定承载的离散微任务。每一次智能体调用都具备明确的前置条件（Preconditions）、输入工件（Inputs）、转化规则（Transitions）与产出物（Artifacts），避免会话过长导致的上下文污染。
+1. **认知失真与对齐失效 (Misalignment)**：
+   - **痛点现象**：开发者给出一两句简要需求，Agent 便直接生成数百行代码。开发者满怀期待地检阅，却发现 Agent 理解的方向南辕北辙。
+   - **工程根源**：人类往往在需求初期存在大量隐含假设，而未经“盘问对齐”的 Agent 会以概率最大的通用实现填补空白，导致根本意图错位。
+2. **黑话泛滥与上下文失焦 (Jargon Gap & Verbosity)**：
+   - **痛点现象**：Agent 缺乏对具体业务领域的精准认知，为了描述一个简单的概念往往耗费 20 个以上的泛化词汇，且在多轮对话中随意切换同义词。
+   - **工程根源**：缺乏领域统一语言（Ubiquitous Language）与明确的反向词汇清单，不仅造成巨大的 Token 浪费，还会导致关键业务约束被歧义稀释。
+3. **反馈断裂与缺陷堆积 (Broken Feedback Loops)**：
+   - **痛点现象**：Agent 声称“已修复 Bug 并完成功能”，但代码在实际运行时抛出大量运行时异常，甚至破坏现有既有逻辑。
+   - **工程根源**：研发过程缺乏自动化的反馈闭环，未落实红绿测试驱动（TDD），Agent 依靠幻觉在盲飞状态下写代码。
+4. **代码腐化与大泥球架构 (Ball of Mud & Architecture Erosion)**：
+   - **痛点现象**：随着 AI 生成代码量的激增，代码库的复杂度和熵值呈指数级增长，模块间高度耦合、接口庞大泄漏，维护成本失控。
+   - **工程根源**：缺乏对代码设计的持续守护，未遵循“深度模块 (Deep Modules)”与信息隐藏原则，盲目追求局部功能的堆砌。
 
-### 3. 垂直切片与示踪弹架构 (Vertical Slicing & Tracer Bullets)
-- **示踪弹切片（Tracer Bullets）**：彻底摒弃“先建全部数据层、再写全部服务层、最后拼前端”的传统水平摊大饼模式，采用端到端穿透的垂直切片任务单。每个任务都是一颗贯穿全链路的示踪弹，能够独立构建、独立运行并立即交付验证。
-- **深层模块隔离（Deep Modules）**：遵从 John Ousterhout 的软件设计哲学，鼓励构建“薄接口、厚实现（Thin Interface, Deep Module）”的深层模块。智能体只暴露极简的外部调用契约，将不可避免的实现复杂度安全封锁在模块内部，显著提升系统的可测试性与后续智能体维护效率。
+### 1.2 Matt Pocock Skills 的设计哲学与核心解法
 
-> [!IMPORTANT]
-> **工业级开发铁律**：永远不要在未达成 Spec 共识前编写业务逻辑；永远不要在没有失败测试（Red Test）的前提下添加功能代码；永远不要让单个智能体会话跨越超过其有效注意力窗口的工程跨度。
+Matt Pocock Skills 摒弃了由单一笨重框架接管一切的黑盒思路，确立了以下四项核心设计哲学：
 
----
-
-## 二、25 个技能全景分类矩阵
-
-Matt Pocock 技能套件共收录 **25 个高内聚、专精化** 的智能体技能，全面覆盖现代软件开发生命周期的每一个关键跃迁点。以下为套件技能全景矩阵：
-
-| 序号 | 技能名称 (Slug) | 中文角色定位 | 所属阶段 | 一句话核心价值 |
-| :---: | :--- | :--- | :--- | :--- |
-| 1 | `setup-matt-pocock-skills` | 工程基线初始化专员 | 环境与基础设施 | 自动化配置代码库的 Issue Tracker、分流标签字典与领域文档架构基线。 |
-| 2 | `writing-for-agents` | 智能体文档规范师 | 环境与基础设施 | 按照高可解析度与低歧义标准，编撰面向 AI 调用的规则、Prompt 与技能定义文件。 |
-| 3 | `grilling` | 方案压力测试盘问官 | 需求推演与方案规划 | 通过无情、密集的连续追问，暴露并消灭设计草案中的隐藏假设与技术盲区。 |
-| 4 | `grill-me-matt` | 深度访谈推演官 | 需求推演与方案规划 | 采用苏格拉底式互动访谈，逐步挖掘、收敛并打磨复杂功能设计的细节边界。 |
-| 5 | `grill-with-docs` | 边盘问边文档架构师 | 需求推演与方案规划 | 在高强度推演过程中同步沉淀生产级 ADR 架构决策记录与业务术语词汇表。 |
-| 6 | `research` | 权威信源溯源研究员 | 需求推演与方案规划 | 穿透至官方一手文档与代码仓库进行技术验证，产出高信度研究报告。 |
-| 7 | `domain-modeling` | 领域建模与统一语言专家 | 需求推演与方案规划 | 梳理系统核心实体与关系，确立全团队统一语言（Ubiquitous Language）与边界上下文。 |
-| 8 | `to-spec` | 技术规格综合提炼官 | 需求推演与方案规划 | 将散落的方案讨论与推演成果一键聚合为标准结构化 Spec，并发布至 Issue 跟踪器。 |
-| 9 | `to-tickets` | 示踪弹任务切分编排员 | 需求推演与方案规划 | 将 Spec 拆解为具有 DAG 依赖图谱的垂直示踪弹 Ticket 集合，清晰声明阻塞边界。 |
-| 10 | `to-questionnaire` | 决策问卷生成助手 | 需求推演与方案规划 | 将无法在单点完成的技术裁决转化为结构化问卷，便于异步向利益相关者征询意见。 |
-| 11 | `wayfinder` | 宏大工程拓扑寻路向导 | 需求推演与方案规划 | 将超大跨度工程绘制为决策票据拓扑地图，指引团队按依赖顺序逐个攻克破局。 |
-| 12 | `codebase-design` | 深层模块设计导师 | 架构设计与原型验证 | 提供深层模块设计词汇表与评估准则，指导接口最小化与逻辑深层化设计。 |
-| 13 | `prototype` | 抛弃型原型探索师 | 架构设计与原型验证 | 低成本构建实验性验证原型，快速验证状态机模型、复杂算法或 UI 交互的可行性。 |
-| 14 | `improve-codebase-architecture` | 架构深层化机遇扫描仪 | 架构设计与原型验证 | 深度扫描代码库中的架构浅层化坏味道，输出交互式 HTML 诊断报告并启动重构推演。 |
-| 15 | `implement` | 任务落地实施执行者 | 工程编码与测试驱动 | 严格对照已裁决的 Spec 与任务清单，实施精确的代码改动并完成闭环交付。 |
-| 16 | `tdd` | 测试驱动开发领航员 | 工程编码与测试驱动 | 贯彻红-绿-重构（Red-Green-Refactor）铁律，先确立失败测试再编写生产代码。 |
-| 17 | `resolving-merge-conflicts` | 分支合并冲突调解员 | 工程编码与测试驱动 | 深入解析多分支变更意图与语义差异，安全、干净地消解 Git 衍合与合并冲突。 |
-| 18 | `code-review` | 双轴代码质量审查官 | 质量把控与排障审查 | 启动并行子智能体，沿“规范轴（Standards）”与“需求轴（Spec）”展开并排深度评审。 |
-| 19 | `diagnosing-bugs` | 疑难故障四步诊断侦探 | 质量把控与排障审查 | 运用科学排障循环（复现、假设、检测、隔离），严禁盲猜盲改，快速定位根因。 |
-| 20 | `triage` | 工单与 PR 分流调度官 | 质量把控与排障审查 | 驱动 Issue 按照标准五角色标签流转状态机演进，确保所有待办就绪且责任到人。 |
-| 21 | `ask-matt` | 技能路由智能调度总管 | 协作协同与交互辅助 | 分析用户当前工程上下文与困境，精准路由匹配最佳技能与协同工作流。 |
-| 22 | `handoff` | 跨会话状态无缝交接官 | 协作协同与交互辅助 | 将当前长会话状态、未决分歧与下一步行动高保真提炼为交接卡片，供后续会话继承。 |
-| 23 | `teach` | 交互式技术实战导师 | 协作协同与交互辅助 | 在当前工程环境内采用渐进引导式教学法，手把手带领开发者掌握新概念或工具栈。 |
-| 24 | `wait-what` | 认知偏离紧急纠偏器 | 协作协同与交互辅助 | 当智能体理解出现严重偏差时紧急叫停，重置对话节奏并重新对齐业务意图。 |
-| 25 | `wizard` | 人类独占操作向导生成器 | 协作协同与交互辅助 | 针对仅限人类完成的高敏感/交互操作（如配置密钥、云平台审核），生成交互式执行向导。 |
-
----
-
-## 三、智能体全生命周期闭环流程图
-
-在工业级研发流程中，25 个技能并非孤立存在，而是形成严丝合缝的闭环流水线。下图展示了一个需求从最初模糊概念到最终合并归档的全生命周期流转机制：
+- **小巧可组合 (Small, Easy to Adapt & Composable)**：每个 Skill 均保持高内聚与单一职责，不绑架整体工作流。开发者可按需自由组合，适配任何主流模型。
+- **保留人类控制权 (Human in the Driver's Seat)**：严禁 Agent 擅自进行不可逆决策。在关键接缝（Seam）与分支节点，强制引入人机对齐与显式确认机制。
+- **倡导深度模块 (Deep Modules over Shallow Modules)**：遵循 John Ousterhout 在《软件设计哲学》中的核心理念，引导 Agent 构建“简单精炼接口、强大丰满实现”的高质量工程架构。
+- **严格测试驱动 (Strict Test-Driven Development)**：在动手编写生产代码前，必须先建立能稳定复现失败的红灯测试，借助客观反馈速度作为研发的真实安全边界。
 
 ```mermaid
 flowchart TD
-    %% 阶段 1: 需求引入与初始化
-    subgraph S1["一、工程就绪与需求接入 (Setup & Ingestion)"]
-        N_Setup["初始化仓库基线<br/>(setup-matt-pocock-skills)"] --> N_Prompt["开发者提出需求 / 缺陷"]
-        N_Writing["规范化智能体规则<br/>(writing-for-agents)"] -.-> N_Prompt
-        N_Prompt --> N_Router{"路由判定<br/>(ask-matt)"}
-        N_Router -->|"超大工程地图"| N_Wayfinder["路线寻路与拓扑拆解<br/>(wayfinder)"]
-        N_Router -->|"工单分流治理"| N_Triage["状态机分流调度<br/>(triage)"]
-        N_Router -->|"常规功能/优化"| N_Grill["严苛方案盘问<br/>(grilling / grill-me-matt)"]
-        N_Wayfinder --> N_Grill
-        N_Triage --> N_Grill
+    subgraph Trap["氛围写代码的四大陷阱 (Vibe Coding Traps)"]
+        direction TB
+        T1["对齐失真<br>(Misalignment)"]
+        T2["黑话泛滥<br>(Jargon Gap)"]
+        T3["缺乏反馈<br>(Broken Loops)"]
+        T4["大泥球腐化<br>(Ball of Mud)"]
     end
 
-    %% 阶段 2: 方案推演与建模
-    subgraph S2["二、方案推演与领域沉淀 (Analysis & Modeling)"]
-        N_Grill --> N_Research["一手权威信源调研<br/>(research)"]
-        N_Research --> N_GrillDocs["边推演边沉淀文档<br/>(grill-with-docs)"]
-        N_GrillDocs --> N_Domain["领域建模与术语固化<br/>(domain-modeling)"]
-        N_GrillDocs --> N_ADR["生成架构决策记录<br/>(docs/adr/*.md)"]
-        N_Domain --> N_Glossary["固化统一语言词汇表<br/>(CONTEXT.md)"]
+    subgraph Solution["Matt Pocock Skills 核心工程解法"]
+        direction TB
+        S1["极限盘问机制<br>(Grilling & Design Tree)"]
+        S2["领域建模与上下文<br>(Ubiquitous Language & CONTEXT.md)"]
+        S3["红绿测试驱动与六步排障<br>(TDD & Diagnosing Bugs)"]
+        S4["深度模块设计与架构扫描<br>(Deep Modules & Codebase Design)"]
     end
 
-    %% 阶段 3: 规格编制与架构设计
-    subgraph S3["三、规格编制与任务切片 (Specification & Slicing)"]
-        N_Glossary --> N_Spec["聚合技术规格<br/>(to-spec)"]
-        N_Spec --> N_Design["深层模块设计审查<br/>(codebase-design)"]
-        N_Spec --> N_Split["示踪弹任务切分<br/>(to-tickets)"]
-        N_Design --> N_Split
-        N_Split -->|"遇不可裁决分歧"| N_Quest["生成决策问卷<br/>(to-questionnaire)"]
-        N_Quest -.->|"异步决策确认"| N_Split
-        N_Split -->|"逻辑不确定"| N_Proto["抛弃型原型验证<br/>(prototype)"]
-        N_Proto -.->|"验证可行性后"| N_Split
-    end
+    T1 ==> S1
+    T2 ==> S2
+    T3 ==> S3
+    T4 ==> S4
 
-    %% 阶段 4: 编码实施与测试驱动
-    subgraph S4["四、工程实施与测试驱动 (Engineering & TDD)"]
-        N_Split --> N_Impl["挑选就绪 Ticket<br/>(implement)"]
-        N_Impl --> N_TDD["测试驱动红绿循环<br/>(tdd: Red -> Green -> Refactor)"]
-        N_TDD -->|"代码分支冲突"| N_Conflict["合并冲突安全化解<br/>(resolving-merge-conflicts)"]
-        N_Conflict --> N_TDD
-    end
-
-    %% 阶段 5: 质量审查与排障治理
-    subgraph S5["五、双轴审查与质量保障 (Review & Diagnostics)"]
-        N_TDD --> N_Review["双轴代码并行审查<br/>(code-review)"]
-        N_Review -->|"轴 1: Standards 规范符合度"| N_Pass{"审查是否通过?"}
-        N_Review -->|"轴 2: Spec 契约符合度"| N_Pass
-        N_Pass -->|"未通过: 存在缺陷/回退"| N_Diag["四步排障与根因隔离<br/>(diagnosing-bugs)"]
-        N_Diag --> N_TDD
-    end
-
-    %% 阶段 6: 协同交接与人类向导
-    subgraph S6["六、跨会话交接与交付 (Handoff & Closure)"]
-        N_Pass -->|"通过: 任务完结"| N_Done["合并入库 & 关闭工单"]
-        N_Pass -->|"上下文接近上限"| N_Handoff["提炼交接卡片<br/>(handoff)"]
-        N_Handoff -->|"新会话挂载"| N_Impl
-        N_Done -->|"需人类交互部署/配置"| N_Wizard["生成交互式终端向导<br/>(wizard)"]
-        N_Done -->|"需系统化技术传授"| N_Teach["交互式实战教学<br/>(teach)"]
-    end
-
-    %% 异常叫停机制
-    N_Wait["认知急刹车 (wait-what)"] -.->|"任何阶段发生偏离时中断并重置"| S2
-    N_Wait -.->|"任何阶段发生偏离时中断并重置"| S3
-    N_Wait -.->|"任何阶段发生偏离时中断并重置"| S4
+    classDef trapStyle fill:#fee2e2,stroke:#ef4444,stroke-width:2px,color:#991b1b;
+    classDef solStyle fill:#ecfdf5,stroke:#10b981,stroke-width:2px,color:#065f46;
+    class T1,T2,T3,T4 trapStyle;
+    class S1,S2,S3,S4 solStyle;
 ```
-
-> [!NOTE]
-> **流程特征解析**：
-> 1. **双向反馈环（Closed Loop）**：若在审查阶段（`code-review`）发现回归问题，不会随意修补，而是触发 `diagnosing-bugs` 形成复现用例后交回 `tdd` 修复，确保测试覆盖率持续提升。
-> 2. **认知熔断器（Cognitive Breaker）**：任何执行阶段若发现智能体偏离初始设计目标，可通过 `wait-what` 瞬间刹车并回退，杜绝沉没成本累积。
 
 ---
 
-## 四、基于工作场景的技能速查路由表
+## 2. Skills 全景矩阵与分类全景 (The Complete Matrix)
 
-当开发者或团队在实际研发中面临不同场景诉求时，无需生记 25 个技能，可对照下表直达最佳调用序列：
+### 2.1 双轴调用分类模型 (User-Invoked vs Model-Invoked)
 
-| 研发场景 | 痛点与目标 | 推荐技能调用链路 | 关键产出与里程碑 |
-| :--- | :--- | :--- | :--- |
-| **大型特性从 0 到 1 开发** | 业务逻辑盘根错节，涉及多个底层系统交互，极易发生架构腐化与推倒重来。 | `grill-with-docs`<br/>⬇️ `domain-modeling`<br/>⬇️ `to-spec`<br/>⬇️ `to-tickets`<br/>⬇️ `implement`<br/>⬇️ `code-review` | • 产出 1 篇以上系统 ADR 与统一语言词汇表<br/>• 在 Issue Tracker 建立具备阻塞关系的示踪弹工单拓扑<br/>• 双轴审查报告确保 100% 契约满足度 |
-| **超大工程重构与技术换代** | 工程规模超出一个会话窗口承载极限，技术债务与隐式耦合难以梳理。 | `wayfinder`<br/>⬇️ `improve-codebase-architecture`<br/>⬇️ `codebase-design`<br/>⬇️ `to-tickets`<br/>⬇️ `handoff` | • 输出系统级深层架构改进 HTML 报告<br/>• 将巨型重构拆解为独立演进的子路线图地图<br/>• 跨多个智能体会话接力推进 |
-| **紧急排查线上故障 / 性能退化** | 系统报错或吞吐量骤降，开发者倾向于“试探性改代码”，容易引发连带灾难。 | `diagnosing-bugs`<br/>⬇️ `tdd`<br/>⬇️ `code-review` | • 锁定最小确定性复现步骤与失败单测<br/>• 形成假设-测试-隔离的排障日志<br/>• 编写针对性修复并通过双轴审查 |
-| **多分支合并冲突严重** | 长期特性分支合并产生大量冲突，涉及业务意图交叉，手工合码容易遗漏逻辑。 | `resolving-merge-conflicts`<br/>⬇️ `code-review` | • 理清两端变更的真实业务诉求<br/>• 产出清晰干净的冲突解决方案与审查比对 |
-| **方案陷入僵局或需外部确认** | 团队对技术选型或业务边界存在分歧，智能体无法代替人类做商业决策。 | `to-questionnaire`<br/>⬇️ `prototype` | • 生成清晰简明的决策选项调查问卷<br/>• 构建极简可丢弃验证原型辅助团队决策 |
-| **上下文饱和或跨班次交接** | 当前会话消息过多导致回复质量下降，或需转交他人/新会话继续推进。 | `handoff`<br/>⬇️ （新会话）`implement` | • 提炼高密度的上下文压缩交接卡片<br/>• 零损耗还原现场并实现无缝续写 |
-| **涉及敏感凭据与人工云平台配置** | 部署或配置依赖开发者个人生产凭据、短信验证码或云控制台手工点击。 | `wizard` | • 自动化生成交互式 Bash/PowerShell 执行脚本<br/>• 引导开发者逐步完成手工操作且不泄露凭据 |
-| **面对新系统或生疏技术栈** | 开发者需要快速理解某模块设计理念或掌握特定技术框架的正确姿势。 | `teach` | • 结合当前工作区实际代码展开交互式启发式带教<br/>• 避免纯理论灌输，边教边练 |
-| **不确定该用什么技能** | 遇到研发疑难，不知如何启动智能体工程工作流。 | `ask-matt` | • 智能体根据上下文自动推荐最佳技能与切入姿势 |
+Matt Pocock Skills 遵循清晰的调用权责隔离原则，将所有技能严格划分为两大阵营：
+
+1. **用户显式唤起技能 (User-Invoked Skills)**：
+   - **定位**：流程编排者（Orchestrator）。
+   - **触发规则**：只能由人类开发者通过斜杠命令（如 `/grill-with-docs`、`/to-spec`、`/implement`）显式调用，智能体**严禁擅自主动调用**。
+   - **职责**：负责管理长流程上下文、推进多轮用户对话、驱动下游纪律原语，并在关键节点停下等待确认。
+2. **模型自主调用技能 (Model-Invoked Skills)**：
+   - **定位**：工程纪律与复用原语（Discipline Primitives）。
+   - **触发规则**：既可由人类在特定场景下直接输入命令调用，亦可在满足意图契约时由 Agent 在后台自主激活。
+   - **职责**：执行特定的工程刚性规约（如 TDD 测试循环、深入调研、并行双轴代码审查）。
+
+> [!IMPORTANT]
+> **单向依赖红线 (Strict Dependency Ceiling)**：
+> 用户显式唤起技能（编排者）可以调用模型自主技能（纪律原语），但用户显式技能**严禁相互嵌套调用**；模型自主技能之间保持原子独立，杜绝形成递归调用死锁。
+
+```mermaid
+flowchart LR
+    Human(["人类开发者 (Human Developer)"])
+    
+    subgraph UserLayer["用户编排层 (User-Invoked Skills)"]
+        UI_Ask["/ask-matt<br>(智能路由)"]
+        UI_Grill["/grill-with-docs<br>(需求盘问)"]
+        UI_Spec["/to-spec<br>(规格制定)"]
+        UI_Tickets["/to-tickets<br>(任务拆解)"]
+        UI_Impl["/implement<br>(研发总线)"]
+        UI_Triage["/triage<br>(缺陷分流)"]
+    end
+
+    subgraph ModelLayer["纪律原语层 (Model-Invoked Skills)"]
+        MI_Domain["domain-modeling<br>(领域建模)"]
+        MI_TDD["tdd<br>(红绿测试)"]
+        MI_Review["code-review<br>(双轴审查)"]
+        MI_Design["codebase-design<br>(深度模块)"]
+        MI_Diag["diagnosing-bugs<br>(闭环排障)"]
+    end
+
+    Human -->|"/command 显式唤起"| UserLayer
+    Human -.->|"直接调用"| ModelLayer
+    UserLayer ==>|"按需编排调度"| ModelLayer
+    Agent(["智能体自身 (Agent)"]) -->|"契约自主激活"| ModelLayer
+```
+
+### 2.2 25 个 Skills 完整属性速查矩阵
+
+整个技能套件共包含 **25 个专业技能**，分为工程类 (Engineering) 与效能类 (Productivity)：
+
+| 序号 | 技能标识符 (Skill Name) | 调用轴 | 所属分类 | 核心输入契约 | 核心交付产出 | 职责定位简述 |
+| :---: | :--- | :---: | :---: | :--- | :--- | :--- |
+| 1 | `ask-matt` | User | 工程 | 模糊诉求/工作流疑问 | 推荐的最佳技能与路径 | 技能路由器，帮助开发者快速研判调用哪个技能 |
+| 2 | `setup-matt-pocock-skills` | User | 工程 | 仓库当前环境与远端 | `docs/agents/` 配置文件 | 初始化项目级基础设施契约（跟踪器、标签、文档） |
+| 3 | `grill-with-docs` | User | 工程 | 初始设计想法/变更意图 | `CONTEXT.md` / ADR 决策记录 | 带领域建模与架构决策记录产出的深度盘问对齐 |
+| 4 | `grill-me-matt` | User | 效能 | 业务想法/计划草案 | 收敛的设计树与明确结论 | 纯文本与业务逻辑极限盘问（不生成代码资产） |
+| 5 | `grilling` | Model | 效能 | 待研判方案或问题分支 | 澄清提问与决策分支收敛 | 所有盘问技能共享的核心交互与设计树收敛底座 |
+| 6 | `domain-modeling` | Model | 工程 | 业务对话/术语演进 | `CONTEXT.md` 词汇更新 | 提取领域统一语言，建立反义词列表与场景压测 |
+| 7 | `codebase-design` | Model | 工程 | 模块接口/重构代码段 | 深度模块评估与接缝定义 | 衡量接口深度，指导信息隐藏与良好架构接缝设计 |
+| 8 | `improve-codebase-architecture` | User | 工程 | 目标代码库上下文 | 交互式 HTML 架构体检报告 | 扫描代码库浅模块与加深机会，并引导重构盘问 |
+| 9 | `prototype` | Model | 工程 | 待验证的状态或 UI 假设 | 单文件 HTML / 激进 UI 路由 | 构建高效率抛弃型原型，快速验证状态逻辑与交互 |
+| 10 | `to-spec` | User | 工程 | 当前会话形成的成熟方案 | Issue Tracker 上的 Spec 文档 | 无需额外面试，将当前上下文直接提炼为标准规格书 |
+| 11 | `to-tickets` | User | 工程 | 方案设计或 Spec 文档 | 曳光弹 Tickets 及其阻塞依赖 | 将大任务拆解为具象可验证、带 DAG 关系的曳光弹票据 |
+| 12 | `wayfinder` | User | 工程 | 跨越单会话的超大型项目 | 决策地图 `wayfinder:map` | 面对迷雾工程，生成决策树票据并支持跨会话逐一攻克 |
+| 13 | `triage` | User | 工程 | Issue 列表或缺陷清单 | 标签状态机变更与指派 | 按照五角色标准模型分流 Issues 并补充缺失上下文 |
+| 14 | `implement` | User | 工程 | Spec 或一组 Tickets | 可工作的代码与完备测试 | 研发总线：驱动 TDD 实现功能，并在提交前触发审查 |
+| 15 | `tdd` | Model | 工程 | 功能切片或缺陷复现需求 | 红绿测试用例与实现代码 | 严谨红绿重构测试循环，杜绝无断言与脆弱测试用例 |
+| 16 | `diagnosing-bugs` | Model | 工程 | 报错堆栈/偶发缺陷报告 | 最小复现场景与根因修复代码 | 拒绝盲猜，通过六阶段严谨闭环定位并修复复杂故障 |
+| 17 | `code-review` | Model | 工程 | Git Diff 与基线 Commit | 双轴审查对比报告 | 规范轴 (Standards) 与契约轴 (Spec) 双子 Agent 并行审查 |
+| 18 | `resolving-merge-conflicts` | Model | 工程 | 处于冲突状态的代码工作区 | 无冲突的代码与合理解析记录 | 溯源双端真实意图，块级消解 Git 冲突，严禁直接放弃 |
+| 19 | `research` | Model | 工程 | 技术调研命题或选型疑问 | 带权威信源引用的技术调研报告 | 派发后台轻量级 Agent 深度挖掘 Tier 1 官方文档依据 |
+| 20 | `wizard` | Model | 工程 | 需人类手动操作的基础设施任务 | 交互式引导 Bash 脚本 | 为权限申请、控制台交互等生成防御性引导脚本 |
+| 21 | `handoff` | User | 效能 | 当前冗长复杂的排障/研发会话 | 结构化交接 Markdown 文档 | 压缩会话状态并提取未决任务，供接力 Agent 瞬时恢复 |
+| 22 | `teach` | User | 效能 | 目标学习主题或技能 | 状态化练习与引导代码 | 以当前工作区为课堂，提供多会话渐进式交互教学 |
+| 23 | `to-questionnaire` | User | 效能 | 需要外部决策者拍板的问题 | 面向特定干系人的结构化问卷 | 提炼关键选项与权衡，供异步发给业务方或架构师填写 |
+| 24 | `wait-what` | User | 效能 | 产生误解或看不懂的 Agent 输出 | 基于领域大白话的重塑解释 | 当沟通陷入僵局时，依托领域模型用通俗语言重述上下文 |
+| 25 | `writing-for-agents` | Model | 效能 | 面向 Agent 的规则或指南需求 | 高信噪比的 `AGENTS.md` / `SKILL.md` | 编写高执行力、低歧义、防漂移的 Agent 交互契约指南 |
+
+---
+
+## 3. 快速上手路线图 (Getting Started & Workflows)
+
+### 3.1 30 秒安装与全局加载基线
+
+Matt Pocock Skills 提供了两种主流分发模式，满足不同开发者的治理偏好：
+
+```bash
+# 模式 A: 作为 Claude Code 官方受管插件全局安装（推荐，自动更新）
+claude plugins install mattpocock-skills
+
+# 或在会话内直接输入命令
+/plugin install mattpocock-skills
+```
+
+```bash
+# 模式 B: 本地源码化植入（适合需要针对团队深度二开或内网隔离环境）
+npx skills@latest add mattpocock/skills
+```
 
 > [!TIP]
-> 在任何场景执行中，如果智能体给出的答复完全偏离重点或出现胡言乱语，请直接使用 `/wait-what` 命令，强制其暂停并重新陈述意图。
+> 两种安装方式二选一即可。若两者同时安装，会导致每个技能出现重复注册与提示冲突。
+
+### 3.2 典型研发黄金流 (Golden Flows)
+
+在实际工程研发中，技能通常串联成高效流水线运作。以下为最常用的两大标准流水线：
+
+#### 黄金流一：特性开发全周期流水线 (Feature Lifecycle Flow)
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Dev as 人类开发者
+    participant Grill as "/grill-with-docs"
+    participant Spec as "/to-spec"
+    participant Tickets as "/to-tickets"
+    participant Impl as "/implement"
+    participant TDD as "tdd (模型)"
+    participant Review as "code-review (模型)"
+
+    Dev->>Grill: 提出初始模糊特性需求
+    activate Grill
+    Grill-->>Dev: 多轮深度盘问，理清设计树
+    Grill->>Grill: 沉淀 CONTEXT.md 领域术语与 ADR
+    deactivate Grill
+
+    Dev->>Spec: 呼叫规格合成
+    activate Spec
+    Spec-->>Dev: 生成完整 Spec 并发布至 Issue Tracker
+    deactivate Spec
+
+    Dev->>Tickets: 呼叫任务拆解
+    activate Tickets
+    Tickets-->>Dev: 拆解为具象曳光弹 Tickets 与阻塞依赖图 (DAG)
+    deactivate Tickets
+
+    Dev->>Impl: 传入 Tickets 启动研发
+    activate Impl
+    Impl->>TDD: 驱动第一个功能切片
+    activate TDD
+    TDD->>TDD: 编写失败用例 (Red) -> 实现见绿 (Green) -> 重构 (Refactor)
+    TDD-->>Impl: 切片完成
+    deactivate TDD
+    Impl->>Review: 发起提交前审查
+    activate Review
+    Review->>Review: 双子 Agent 隔离审查 (Standards vs Spec)
+    Review-->>Dev: 审查通过，呈现最终代码
+    deactivate Review
+    deactivate Impl
+```
+
+#### 黄金流二：线上紧急故障闭环流水线 (Bugfix Flow)
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Dev as 人类开发者
+    participant Diag as "diagnosing-bugs"
+    participant TDD as "tdd"
+    participant Review as "code-review"
+
+    Dev->>Diag: 输入崩溃堆栈与异常现象
+    activate Diag
+    Diag->>Diag: 1. 建立失败测试环 (Red Loop)
+    Diag->>Diag: 2. 最小化复现场景
+    Diag->>Diag: 3. 提出根因假设并埋设探针
+    Diag->>Diag: 4. 确认根因，交接修复方案
+    Diag-->>Dev: 根因分析与最小复现用例就绪
+    deactivate Diag
+
+    Dev->>TDD: 驱动针对性修复
+    activate TDD
+    TDD->>TDD: 编写防回归测试用例 -> 最小实现修复 -> 验证通过
+    TDD-->>Dev: 缺陷修复且防回退用例就绪
+    deactivate TDD
+
+    Dev->>Review: 执行双轴核验
+    activate Review
+    Review->>Review: 核验是否引入附带破坏 (Side Effects)
+    Review-->>Dev: 确认无坏味道且契约完好，安全入库
+    deactivate Review
+```
 
 ---
 
-## 五、子专题文档快速跳转指南
+## 4. 模块化指南套件导航 (Modular Suite Navigation)
 
-为了便于深度查阅具体技能的详细执行协议、Prompt 模版、参数契约与实战案例，全套导读已细化为以下五个专业子专题页面：
+为了帮助开发者系统化掌握各项技能，本使用文档按工程生命周期拆分为 6 篇深度专题指南：
 
-```
-                              d:\My\dev\Ateng-AI\skills\mattpocock\
-                                                │
-         ┌──────────────────┬───────────────────┼───────────────────┬──────────────────┐
-         ▼                  ▼                   ▼                   ▼                  ▼
-    [planning]        [engineering]      [review-quality]    [collaboration]        [setup]
-  需求推演与规划      架构设计与工程实施    审查把控与质量排障    跨会话协同与向导    工程基线与配置
-```
+| 专题序号 | 文档名称与直达链接 | 核心覆盖技能 | 重点解决问题 |
+| :---: | :--- | :--- | :--- |
+| **01** | [体系架构、基础设施与初始化配置](01-architecture-and-setup.md) | `setup-matt-pocock-skills`, `ask-matt` | 仓库契约架构、多 Issue Tracker（GitHub / GitLab / Local）适配与全局智能路由 |
+| **02** | [需求对齐、极限盘问与深度模块设计](02-alignment-and-design.md) | `grilling`, `grill-with-docs`, `grill-me-matt`, `domain-modeling`, `codebase-design`, `improve-codebase-architecture`, `prototype` | 消除对齐鸿沟、统一语言构建、Ousterhout 深度模块哲学、架构体检扫描与原型验证 |
+| **03** | [规范制定、曳光弹任务拆解与分流管理](03-planning-and-triage.md) | `to-spec`, `to-tickets`, `wayfinder`, `triage` | 免面试规格合成、曳光弹切片与 DAG 阻塞依赖、超大会话战略寻路罗盘及五角色分流 |
+| **04** | [工程研发、红绿测试与双轴审查](04-engineering-execution-and-quality.md) | `implement`, `tdd`, `diagnosing-bugs`, `code-review`, `resolving-merge-conflicts` | 研发执行总线、红-绿-重构刚性铁律、六阶段科学排障、双子 Agent 隔离审查及意图级 Git 冲突消解 |
+| **05** | [深度调研、自动化向导与运维支撑](05-research-and-devops.md) | `research`, `wizard` | 后台高信任度深度技术调研（Tier 1 信源）与人机运维边界下的防错交互向导脚本 |
+| **06** | [效能协作、教学传承与 Agent 文档编写](06-productivity-and-collaboration.md) | `handoff`, `to-questionnaire`, `wait-what`, `teach`, `writing-for-agents` | 跨会话上下文压缩交接、外部决策异步问卷、语境重塑、状态化互动教学及面向 Agent 的文档工程 |
 
-### 1. [需求推演与方案规划 (Planning & Inception)](planning.md)
-- **专题职责**：将模糊的初始需求转化为坚固如磐石的技术规格与切片工单。
-- **涵盖技能**：`grilling`, `grill-me-matt`, `grill-with-docs`, `research`, `domain-modeling`, `to-spec`, `to-tickets`, `to-questionnaire`, `wayfinder`。
-- **重点内容**：苏格拉底式追问技巧、一手文献调研准则、统一语言表与 ADR 自动化模版、Tracer-Bullet 任务图谱拆分标准。
+---
 
-### 2. [架构设计与工程编码 (Architecture & Engineering)](engineering.md)
-- **专题职责**：落实深层模块化设计哲学，以严格的 TDD 节奏推进高质量代码编写。
-- **涵盖技能**：`codebase-design`, `prototype`, `implement`, `tdd`, `improve-codebase-architecture`, `resolving-merge-conflicts`。
-- **重点内容**：深层模块（Deep Module）设计量化评估、红绿重构执行循环、抛弃型原型探索、Git 语义级冲突安全化解。
+## 5. 权威参考资料与事实依据 (References & Grounding)
 
-### 3. [质量把控与排障审查 (Review, Quality & Triage)](review-quality.md)
-- **专题职责**：构建独立于编写过程的严格质量防线，科学诊断疑难杂症与规范工单流转。
-- **涵盖技能**：`code-review`, `diagnosing-bugs`, `triage`。
-- **重点内容**：并行子智能体双轴审查机制（Standards 轴 vs Spec 轴）、四阶段科学排障法（复现/假设/检测/隔离）、五状态工单分流机。
+### 5.1 核心依赖与引用信源
 
-### 4. [协同交接与辅助工具 (Collaboration & Auxiliary)](collaboration.md)
-- **专题职责**：打通长周期研发中的上下文继承障碍，保障人机顺畅协作与渐进成长。
-- **涵盖技能**：`ask-matt`, `handoff`, `teach`, `wait-what`, `wizard`。
-- **重点内容**：技能全景路由表算法、上下文压缩与交接卡片规范、认知刹车机制、人机边界保护向导。
+- [[Tier 1]] [Matt Pocock Skills 官方文档与发布仓库](https://skills.sh/mattpocock/skills) - 全套技能权威定义与使用契约 (核验日期: 2026-09-23)
+- [[Tier 1]] [GitHub 官方源码仓库 (mattpocock/skills)](https://github.com/mattpocock/skills) - v1.2.3 规范与技能拓扑实现 (核验日期: 2026-09-23)
+- [[Tier 1]] [Claude Code 插件体系官方标准](https://code.claude.com/docs/en/plugins) - 插件安装规范与生命周期 (核验日期: 2026-09-23)
+- [[Tier 2]] [A Philosophy of Software Design (John Ousterhout)](https://web.stanford.edu/~ouster/cgi-bin/book.php) - 深度模块理论与信息隐藏设计基础 (核验日期: 2026-09-23)
 
-### 5. [工程初始化与配置规范 (Setup & Baseline)](setup.md)
-- **专题职责**：定义项目集成 Matt Pocock 技能套件的前置约束与基础设施配置。
-- **涵盖技能**：`setup-matt-pocock-skills`, `writing-for-agents`。
-- **重点内容**：GitHub CLI（`gh`）工单系统打通、五大标准角色标签（Triage Labels）创建、单上下文架构与领域文档目录标准。
+### 5.2 事实核查矩阵
+
+| 核查对象 (组件/配置/版本) | 官方基准事实 (Ground Truth) | 对应官方依据 (Tier 1 链接) | 状态 |
+| :--- | :--- | :--- | :--- |
+| Matt Pocock Skills 当前版本 | 插件规范版本为 `1.2.3`，涵盖 25 个 Skills | [plugin.json](https://github.com/mattpocock/skills/blob/main/plugin.json) | 已核实真实有效 |
+| 双轴调用模型 (User vs Model) | User 技能仅响应显式输入；Model 技能具备独立工程纪律可自主调用 | [skills/README.md](https://github.com/mattpocock/skills/blob/main/README.md) | 已核实真实有效 |
+| 仓库自包含契约路径 | 统一初始化在项目 `docs/agents/` 下，实现项目零代码侵入 | [setup-matt-pocock-skills.md](https://github.com/mattpocock/skills/tree/main/skills/setup-matt-pocock-skills) | 已核实真实有效 |

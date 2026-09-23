@@ -30,31 +30,38 @@
  👉 [进入 Anthropic 专题](/skills/anthropic/)  👉 [进入 Matt Pocock 专题](/skills/mattpocock/) 👉 [进入 Superpowers 专题](/skills/superpowers/)
 ```
 
-### 1. [Superpowers 自动化交付技能体系 (15 个核心技能)](/skills/superpowers/)
-由 Jesse Vincent（obra）提出的一套面向 AI 编码智能体的工业级自主研发方法论与 15 个开箱即用技能库。通过“约束优于自由”的工程控制理念，彻底根治 Agent 容易失控、盲目编码、跳过测试与代码幻觉的痛点。
+### 1. [Anthropic 官方技能规范与全景指南](/skills/anthropic/)
+遵循 Anthropic Agent Skills 开放规范，涵盖渐进式披露心智模型、官方精选技能全景、自定义技能开发与自动化 Eval 评测及企业安全治理。
 
-- **[全景导读与核心原理](/skills/superpowers/)**：架构哲学、四大工程支柱（约束引导、SDD 双智能体审查、严格 TDD、Worktrees 物理隔离）、15 个技能全景矩阵与三大体系对比。
-- **[端到端研发工作流与 15 个技能详解](/skills/superpowers/workflow)**：从 Brainstorming 需求切片、Writing Plans 计划编制、SDD 双智能体协作时序，到严格 TDD 与分支闭环。
-- **[多宿主安装与运行时集成](/skills/superpowers/installation)**：深度适配 Google Antigravity（Session Hook 挂载）、Claude Code 与 Cursor，16 种宿主环境兼容矩阵与自检 SOP。
-- **[实战进阶与工程最佳实践](/skills/superpowers/best-practices)**：端到端加密模块实战演练、Git Worktrees 隔离开发拓扑、Token 防暴涨避坑与自定义技能扩展。
+- **[📖 全景导读与核心指南](/skills/anthropic/)**：开放标准愿景、渐进式披露三层认知跃迁与 5 分钟极速上手。
+- **[🏛️ 架构原理与规范标准](/skills/anthropic/01-architecture-and-spec)**：`SKILL.md` 物理拓扑契约、Frontmatter 元数据规范与资源解耦。
+- **[⚡ 运行环境与安装部署](/skills/anthropic/02-installation-and-runtime)**：Claude Code CLI 插件管理、Claude.ai 部署与跨平台运行时。
+- **[📚 官方技能全景与实战](/skills/anthropic/03-official-skills-catalog)**：Office 文档、研发工具、创意设计等官方精选技能深度解构。
+- **[🛠️ 技能开发与评测体系](/skills/anthropic/04-skill-development-and-eval)**：元技能 `skill-creator` 实战、自动化 Eval 评测集与描述调优闭环。
+- **[🛡️ 安全治理与最佳实践](/skills/anthropic/05-security-and-best-practices)**：提示词注入防御、代码沙箱隔离、设计反模式与 CI/CD 规范。
+- **[📑 语法速查与参考矩阵](/skills/anthropic/06-quick-reference)**：`SKILL.md` 语法模板 Cheat Sheet 与事实核查矩阵。
 
 ### 2. [Matt Pocock 技能套件 (25 个专业工程技能)](/skills/mattpocock/)
 Matt Pocock 提出的一套工业级 AI Agent 研发协作方法论，将自然语言沟通全面收敛为标准化设计树（Design Tree）、示踪弹任务（Tracer Bullet Tickets）与高质量实施代码。
 
-- **[套件全景与速查](/skills/mattpocock/)**：25 个技能分类矩阵与生命周期闭环图谱。
-- **[需求推演与任务规划](/skills/mattpocock/planning)**：严苛设计推演、统一语言词汇表与路线图导航。
-- **[架构设计与工程编码](/skills/mattpocock/engineering)**：深层模块（Deep Module）设计、TDD 红绿循环与原型探索。
-- **[质量把控与排障审查](/skills/mattpocock/review-quality)**：双轴代码审查、四阶段疑难排障与 Issue 分流状态机。
-- **[协同交接与辅助工具](/skills/mattpocock/collaboration)**：智能技能路由、跨会话交接与交互向导。
-- **[工程初始化与配置规范](/skills/mattpocock/setup)**：Issue Tracker、Triage Labels 与 Domain Docs 接入指南。
+- **[🧭 套件全景与快速入门](/skills/mattpocock/)**：25 个技能分类矩阵、双轴调用模型与研发闭环图谱。
+- **[⚙️ 体系架构与初始化配置](/skills/mattpocock/01-architecture-and-setup)**：仓库契约架构、Issue Tracker 适配与全局智能路由。
+- **[🧩 需求对齐与深度模块设计](/skills/mattpocock/02-alignment-and-design)**：极限盘问机制、领域统一语言与 Ousterhout 深度模块设计。
+- **[📋 规范制定与任务分流管理](/skills/mattpocock/03-planning-and-triage)**：免面试规格合成、曳光弹任务切片与五角色分流。
+- **[🔬 工程研发与红绿测试审查](/skills/mattpocock/04-engineering-execution-and-quality)**：红-绿-重构刚性铁律、六阶段系统排障与双子 Agent 审查。
+- **[🔍 深度调研与自动化向导](/skills/mattpocock/05-research-and-devops)**：高信任度技术调研与防错交互运维向导。
+- **[🤝 效能协作与文档编写](/skills/mattpocock/06-productivity-and-collaboration)**：跨会话上下文交接、异步决策问卷与面向 Agent 的文档工程。
 
-### 3. [Anthropic 官方技能规范与全景指南](/skills/anthropic/)
-遵循 Anthropic Agent Skills 开放规范，涵盖官方 19 个工业级技能全景矩阵、自定义技能渐进式披露设计、离线工程校验与多宿主运行时集成。
+### 3. [Superpowers 自动化交付技能体系 (15 个核心技能)](/skills/superpowers/)
+由 Jesse Vincent（obra）提出的一套面向 AI 编码智能体的工业级自主研发方法论与 15 个开箱即用技能库。通过“约束优于自由”的工程控制理念，彻底根治 Agent 容易失控、盲目编码、跳过测试与代码幻觉的痛点。
 
-- **[开放标准与技术导读](/skills/anthropic/)**：开放技能标准背景愿景、技术维度横向解耦与生态协同架构。
-- **[官方 19 个技能全景矩阵与核心实战拆解](/skills/anthropic/catalog)**：Office 四件套、工程与 MCP、前端设计、组织协同 4 大集群速查，双重协议合规警示卡片与核心技能深度解构。
-- **[自定义技能开发、目录规约与离线校验工程指南](/skills/anthropic/authoring)**：详解 `SKILL.md` 形式化契约、`scripts/` / `references/` / `assets/` 资源解耦、`skills-ref` 静态校验与 CI/CD 门禁流水线实战。
-- **[多宿主集成、客户端配置与运行时调试指南](/skills/anthropic/runtime)**：主流宿主适配配置、环境变量管理、离线运行排障与全生命周期调试。
+- **[🦸 全景总览与架构指南](/skills/superpowers/)**：架构哲学、四大工程支柱、15 个技能全景矩阵与全生命周期轨迹。
+- **[💻 多平台环境部署与集成](/skills/superpowers/01-installation-and-harnesses)**：14+ 平台安装实战、Session-Start Hook 与环境自检排障。
+- **[📝 需求澄清与计划制定](/skills/superpowers/02-core-workflow-and-specs)**：交互式头脑风暴、Visual Companion 画板与防呆实施计划。
+- **[🤖 子代理驱动开发 (SDD)](/skills/superpowers/03-subagent-driven-development)**：Git Worktree 隔离、Ledger 容灾账本、5 轮修复循环与熔断裁决。
+- **[🚦 质量保障与系统排障](/skills/superpowers/04-testing-and-debugging)**：红绿 TDD 铁律、系统化调试四大法则与完成前核验。
+- **[🔄 代码审查与分支生命周期](/skills/superpowers/05-review-and-branch-lifecycle)**：客观审查包生成、多智能体并发调度与分支交付 SOP。
+- **[🩺 进阶扩展与诊断套件](/skills/superpowers/06-skill-authoring-and-diagnostics)**：自定义技能编写、劝服心理学、自动化 Evals 与性能诊断。
 
 ---
 
