@@ -21,7 +21,8 @@ export default withMermaid(
                     { text: '🧭 技能中心', link: '/skills/' },
                     { text: '⚡ Anthropic 官方技能体系', link: '/skills/anthropic/' },
                     { text: '🛠️ Matt Pocock 技能套件', link: '/skills/mattpocock/' },
-                    { text: '🦸 Superpowers 自动化交付', link: '/skills/superpowers/' }
+                    { text: '🦸 Superpowers 自动化交付', link: '/skills/superpowers/' },
+                    { text: '🌱 Spec Kit 规格驱动开发', link: '/skills/spec-kit/' }
                 ]
             },
             { text: 'MCP', link: '/mcp/' },
@@ -92,6 +93,17 @@ export default withMermaid(
                         { text: '🚦 质量保障与系统排障', link: '/skills/superpowers/04-testing-and-debugging' },
                         { text: '🔄 代码审查与分支生命周期', link: '/skills/superpowers/05-review-and-branch-lifecycle' },
                         { text: '🩺 进阶扩展与诊断套件', link: '/skills/superpowers/06-skill-authoring-and-diagnostics' }
+                    ]
+                },
+                {
+                    text: 'Spec Kit 规格驱动开发',
+                    collapsed: false,
+                    items: [
+                        { text: '🌱 全景导读与 SDD 范式', link: '/skills/spec-kit/' },
+                        { text: '⚙️ 环境基准与多 Agent 集成', link: '/skills/spec-kit/01-installation-and-setup' },
+                        { text: '🔄 核心工作流全景实战', link: '/skills/spec-kit/02-core-workflow-sdd' },
+                        { text: '🛠️ CLI 命令行与技能速查', link: '/skills/spec-kit/03-cli-and-commands' },
+                        { text: '🚀 扩展生态与企业实战', link: '/skills/spec-kit/04-extensions-and-advanced' }
                     ]
                 }
             ],

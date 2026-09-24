@@ -21,13 +21,12 @@
                                   │    Ateng-AI 智能体技能生态体系    │
                                   └────────────────┬────────────────┘
                                                    │
-         ┌─────────────────────────────────────────┼─────────────────────────────────────────┐
-         ▼                                         ▼                                         ▼
-【Anthropic 官方技能体系】               【Matt Pocock 工程技能套件】               【Superpowers 自动化交付】
- • 遵循 agentskills.io 开放标准            • 涵盖 25 个端到端专业工程技能            • 涵盖 15 个全自主研发交付技能
- • 涵盖 19 个官方技能与 Office 套件        • 贯穿推演、设计、编码与质量审查          • 需求切片、SDD 双智能体协作
- • 渐进式披露、离线校验与多宿主            • 设计树、示踪弹任务与双轴审查            • 严格 TDD 红绿循环、Worktrees 隔离
- 👉 [进入 Anthropic 专题](/skills/anthropic/)  👉 [进入 Matt Pocock 专题](/skills/mattpocock/) 👉 [进入 Superpowers 专题](/skills/superpowers/)
+         ┌────────────────────────┬────────────────┴────────────────┬────────────────────────┐
+         ▼                        ▼                                 ▼                        ▼
+【Anthropic 官方体系】     【Matt Pocock 工程套件】          【Superpowers 自动化】    【Spec Kit 规格驱动】
+ • 开放标准与元技能         • 25 个专业工程技能               • 15 个全自主研发技能     • 5 阶段 SDD 闭环研发
+ • 渐进式披露三层架构       • 示踪弹任务与双轴审查            • 严格 TDD 与 Worktree    • 宪法记忆与双轨架构
+ 👉 [进入 Anthropic 专题](/skills/anthropic/) 👉 [进入 Matt Pocock 专题](/skills/mattpocock/) 👉 [进入 Superpowers 专题](/skills/superpowers/) 👉 [进入 Spec Kit 专题](/skills/spec-kit/)
 ```
 
 ### 1. [Anthropic 官方技能规范与全景指南](/skills/anthropic/)
@@ -62,6 +61,15 @@ Matt Pocock 提出的一套工业级 AI Agent 研发协作方法论，将自然�
 - **[🚦 质量保障与系统排障](/skills/superpowers/04-testing-and-debugging)**：红绿 TDD 铁律、系统化调试四大法则与完成前核验。
 - **[🔄 代码审查与分支生命周期](/skills/superpowers/05-review-and-branch-lifecycle)**：客观审查包生成、多智能体并发调度与分支交付 SOP。
 - **[🩺 进阶扩展与诊断套件](/skills/superpowers/06-skill-authoring-and-diagnostics)**：自定义技能编写、劝服心理学、自动化 Evals 与性能诊断。
+
+### 4. [Spec Kit 规格驱动开发体系 (GitHub 官方)](/skills/spec-kit/)
+由 GitHub 官方开源的规格驱动开发（Spec-Driven Development, SDD）工具套件与工程规约。将开发重心从即兴对话（Vibe Coding）前置收敛为结构化契约，通过项目宪法、需求规格、技术方案与原子任务闭环杜绝 AI 幻觉与代码漂移。
+
+- **[🌱 全景导读与 SDD 范式](/skills/spec-kit/)**：从 Vibe Coding 到规范驱动开发跃迁、三大核心公理与双轨架构。
+- **[⚙️ 环境基准与多 Agent 集成](/skills/spec-kit/01-installation-and-setup)**：Python 3.11+ / uv 环境基准、Copilot / Claude / Cursor 集成与存量项目引入。
+- **[🔄 核心工作流全景实战](/skills/spec-kit/02-core-workflow-sdd)**：Constitution 宪法 $\rightarrow$ Specify $\rightarrow$ Plan $\rightarrow$ Tasks $\rightarrow$ Implement 全链路。
+- **[🛠️ CLI 命令行与技能速查](/skills/spec-kit/03-cli-and-commands)**：`specify-cli` 全量参数字典、`/speckit-*` Agent 技能及故障排除。
+- **[🚀 扩展生态与企业实战](/skills/spec-kit/04-extensions-and-advanced)**：Bug 修复流、Idea 评估流、CI/CD 自动化门禁与大型 Monorepo 治理。
 
 ---
 
@@ -110,5 +118,20 @@ claude-code --skill ./skills/anthropic/
 # （技能放置于 .agents/skills/ 目录下即可自动感知加载）
 ```
 
+### 4. 驱动 Spec Kit 规格驱动开发工作流
+
+```bash
+# 1. 安装 specify-cli 并初始化工程
+uv tool install specify-cli
+specify init my-app --integration copilot
+
+# 2. 在 IDE Chat 对话中依序驱动 SDD 规范生命周期
+/speckit-constitution
+/speckit-specify <特性需求描述>
+/speckit-plan
+/speckit-tasks
+/speckit-implement
+```
+
 > [!TIP] 推荐阅读路径
-> 建议开发者先从 [Anthropic 开放标准与技术导读](/skills/anthropic/) 开始，理解技能标准与渐进式加载机制；随后结合 [Matt Pocock 套件全景导读](/skills/mattpocock/) 掌握敏捷设计树与示踪弹任务规划；最后通过 [Superpowers 自动化交付全景导读](/skills/superpowers/) 掌握生产级多智能体协同与严格 TDD 落地闭环。
+> 建议开发者先从 [Anthropic 开放标准与技术导读](/skills/anthropic/) 开始，理解技能标准与渐进式加载机制；随后结合 [Matt Pocock 套件全景导读](/skills/mattpocock/) 掌握敏捷设计树与示踪弹任务规划；通过 [Superpowers 自动化交付全景导读](/skills/superpowers/) 掌握生产级多智能体协同与严格 TDD 落地闭环；最后依托 [Spec Kit 规格驱动开发全景导读](/skills/spec-kit/) 建立宪法约束下的防漂移工程闭环。
