@@ -257,7 +257,7 @@ sequenceDiagram
 
 ## 4. 模块化指南套件导航 (Modular Suite Navigation)
 
-为了帮助开发者系统化掌握各项技能，本使用文档按工程生命周期拆分为 6 篇深度专题指南：
+为了帮助开发者系统化掌握各项技能，本使用文档按工程生命周期与实战场景拆分为 7 篇深度专题指南：
 
 | 专题序号 | 文档名称与直达链接 | 核心覆盖技能 | 重点解决问题 |
 | :---: | :--- | :--- | :--- |
@@ -267,6 +267,7 @@ sequenceDiagram
 | **04** | [工程研发、红绿测试与双轴审查](04-engineering-execution-and-quality.md) | `implement`, `tdd`, `diagnosing-bugs`, `code-review`, `resolving-merge-conflicts` | 研发执行总线、红-绿-重构刚性铁律、六阶段科学排障、双子 Agent 隔离审查及意图级 Git 冲突消解 |
 | **05** | [深度调研、自动化向导与运维支撑](05-research-and-devops.md) | `research`, `wizard` | 后台高信任度深度技术调研（Tier 1 信源）与人机运维边界下的防错交互向导脚本 |
 | **06** | [效能协作、教学传承与 Agent 文档编写](06-productivity-and-collaboration.md) | `handoff`, `to-questionnaire`, `wait-what`, `teach`, `writing-for-agents` | 跨会话上下文压缩交接、外部决策异步问卷、语境重塑、状态化互动教学及面向 Agent 的文档工程 |
+| **07** | [多场景组合协同与端到端实战](07-composite-workflows-and-practical-scenarios.md) | 全套 25 个 Skills（涵盖 20 大跨界实战场景） | 25 个技能全场景组合协同、20 大实战场景（覆盖软件研发、架构重构、排障熔断、商业产品、SRE 应急、合规审计、AI 智能体评测、数仓治理、网络安全、物联网、金融量化风控、3D 渲染、研发效能度量、医疗临床数据质控等）、端到端综合案例与防翻车全景指南 |
 
 ---
 

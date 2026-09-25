@@ -82,7 +82,8 @@ export default withMermaid(
                         { text: '📋 规范制定与任务分流管理', link: '/skills/mattpocock/03-planning-and-triage' },
                         { text: '🔬 工程研发与红绿测试审查', link: '/skills/mattpocock/04-engineering-execution-and-quality' },
                         { text: '🔍 深度调研与自动化向导', link: '/skills/mattpocock/05-research-and-devops' },
-                        { text: '🤝 效能协作与文档编写', link: '/skills/mattpocock/06-productivity-and-collaboration' }
+                        { text: '🤝 效能协作与文档编写', link: '/skills/mattpocock/06-productivity-and-collaboration' },
+                        { text: '🚀 多场景组合协同与端到端实战', link: '/skills/mattpocock/07-composite-workflows-and-practical-scenarios' }
                     ]
                 },
                 {
