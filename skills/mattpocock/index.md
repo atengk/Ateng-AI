@@ -126,7 +126,7 @@ flowchart LR
 | 1 | `ask-matt` | User | 工程 | 模糊诉求/工作流疑问 | 推荐的最佳技能与路径 | 技能路由器，帮助开发者快速研判调用哪个技能 |
 | 2 | `setup-matt-pocock-skills` | User | 工程 | 仓库当前环境与远端 | `docs/agents/` 配置文件 | 初始化项目级基础设施契约（跟踪器、标签、文档） |
 | 3 | `grill-with-docs` | User | 工程 | 初始设计想法/变更意图 | `CONTEXT.md` / ADR 决策记录 | 带领域建模与架构决策记录产出的深度盘问对齐 |
-| 4 | `grill-me-matt` | User | 效能 | 业务想法/计划草案 | 收敛的设计树与明确结论 | 纯文本与业务逻辑极限盘问（不生成代码资产） |
+| 4 | `grill-me` | User | 效能 | 业务想法/计划草案 | 收敛的设计树与明确结论 | 纯文本与业务逻辑极限盘问（不生成代码资产） |
 | 5 | `grilling` | Model | 效能 | 待研判方案或问题分支 | 澄清提问与决策分支收敛 | 所有盘问技能共享的核心交互与设计树收敛底座 |
 | 6 | `domain-modeling` | Model | 工程 | 业务对话/术语演进 | `CONTEXT.md` 词汇更新 | 提取领域统一语言，建立反义词列表与场景压测 |
 | 7 | `codebase-design` | Model | 工程 | 模块接口/重构代码段 | 深度模块评估与接缝定义 | 衡量接口深度，指导信息隐藏与良好架构接缝设计 |
@@ -262,7 +262,7 @@ sequenceDiagram
 | 专题序号 | 文档名称与直达链接 | 核心覆盖技能 | 重点解决问题 |
 | :---: | :--- | :--- | :--- |
 | **01** | [体系架构、基础设施与初始化配置](01-architecture-and-setup.md) | `setup-matt-pocock-skills`, `ask-matt` | 仓库契约架构、多 Issue Tracker（GitHub / GitLab / Local）适配与全局智能路由 |
-| **02** | [需求对齐、极限盘问与深度模块设计](02-alignment-and-design.md) | `grilling`, `grill-with-docs`, `grill-me-matt`, `domain-modeling`, `codebase-design`, `improve-codebase-architecture`, `prototype` | 消除对齐鸿沟、统一语言构建、Ousterhout 深度模块哲学、架构体检扫描与原型验证 |
+| **02** | [需求对齐、极限盘问与深度模块设计](02-alignment-and-design.md) | `grilling`, `grill-with-docs`, `grill-me`, `domain-modeling`, `codebase-design`, `improve-codebase-architecture`, `prototype` | 消除对齐鸿沟、统一语言构建、Ousterhout 深度模块哲学、架构体检扫描与原型验证 |
 | **03** | [规范制定、曳光弹任务拆解与分流管理](03-planning-and-triage.md) | `to-spec`, `to-tickets`, `wayfinder`, `triage` | 免面试规格合成、曳光弹切片与 DAG 阻塞依赖、超大会话战略寻路罗盘及五角色分流 |
 | **04** | [工程研发、红绿测试与双轴审查](04-engineering-execution-and-quality.md) | `implement`, `tdd`, `diagnosing-bugs`, `code-review`, `resolving-merge-conflicts` | 研发执行总线、红-绿-重构刚性铁律、六阶段科学排障、双子 Agent 隔离审查及意图级 Git 冲突消解 |
 | **05** | [深度调研、自动化向导与运维支撑](05-research-and-devops.md) | `research`, `wizard` | 后台高信任度深度技术调研（Tier 1 信源）与人机运维边界下的防错交互向导脚本 |

@@ -16,7 +16,7 @@
 
 ### 1.1 `grilling` 核心原语与设计树 (Design Tree) 收敛
 
-`grilling` 是一个基础的模型自主调用技能（Model-Invoked Primitive），它为 `/grill-with-docs`、`/grill-me-matt`、`/triage` 以及 `/wayfinder` 提供底层的决策收敛算法。
+`grilling` 是一个基础的模型自主调用技能（Model-Invoked Primitive），它为 `/grill-with-docs`、`/grill-me`、`/triage` 以及 `/wayfinder` 提供底层的决策收敛算法。
 
 其核心行为遵循以下三项不可动摇的盘问纪律：
 
@@ -60,9 +60,9 @@ flowchart TD
 > [!TIP]
 > 每次执行 `/grill-with-docs` 都是对代码库领域模型的一次“磨刀”。经过几次盘问后，项目的 `CONTEXT.md` 将沉淀出极度清晰的术语基线，后续会话中的 Token 消耗会显著下降。
 
-### 1.3 `/grill-me-matt`：非代码场景下的纯逻辑盘问
+### 1.3 `/grill-me`：非代码场景下的纯逻辑盘问
 
-当开发者正在思考产品定价策略、团队 OKR 拆解、开源治理模型或纯商业方案时，无需创建 `docs/adr/` 或改动 `CONTEXT.md`。此时应调用 `/grill-me-matt`：
+当开发者正在思考产品定价策略、团队 OKR 拆解、开源治理模型或纯商业方案时，无需创建 `docs/adr/` 或改动 `CONTEXT.md`。此时应调用 `/grill-me`：
 - **纯粹逻辑辩论**：专注于商业模型漏洞、用户体验盲区与逻辑悖论；
 - **零仓库副作用**：不生成任何工程配置文件或代码文件，会话结束后直接在聊天框中输出清晰的结论报告。
 
