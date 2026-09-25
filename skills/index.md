@@ -67,7 +67,7 @@ Matt Pocock 提出的一套工业级 AI Agent 研发协作方法论，将自然�
 
 - **[🌱 全景导读与 SDD 范式](/skills/spec-kit/)**：从 Vibe Coding 到规范驱动开发跃迁、三大核心公理与双轨架构。
 - **[⚙️ 环境基准与多 Agent 集成](/skills/spec-kit/01-installation-and-setup)**：Python 3.11+ / uv 环境基准、Copilot / Claude / Cursor 集成与存量项目引入。
-- **[🔄 核心工作流全景实战](/skills/spec-kit/02-core-workflow-sdd)**：Constitution 宪法 $\rightarrow$ Specify $\rightarrow$ Plan $\rightarrow$ Tasks $\rightarrow$ Implement 全链路。
+- **[🔄 核心工作流全景实战](/skills/spec-kit/02-core-workflow-sdd)**：Constitution 宪法 → Specify → Plan → Tasks → Implement 全链路。
 - **[🛠️ CLI 命令行与技能速查](/skills/spec-kit/03-cli-and-commands)**：`specify-cli` 全量参数字典、`/speckit-*` Agent 技能及故障排除。
 - **[🚀 扩展生态与企业实战](/skills/spec-kit/04-extensions-and-advanced)**：Bug 修复流、Idea 评估流、CI/CD 自动化门禁与大型 Monorepo 治理。
 

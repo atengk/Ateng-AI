@@ -197,7 +197,7 @@ specify init order-service --integration copilot --template https://git.internal
 在包含数十个微服务或大型前端 Monorepo 的仓库中，Spec Kit 推荐采用**分层联邦式目录布局**：
 
 ```mermaid
-flowchart TD
+flowchart LR
     subgraph Monorepo["Monorepo 顶层工作区"]
         TopConst[".specify/memory/constitution.md<br/>(企业全局架构总纲与技术底线)"]
     end
@@ -230,7 +230,7 @@ flowchart TD
 
 1. **[全景导读与 SDD 范式 (index.md)](./index.md)**：建立了规格驱动开发的核心三大公理与双轨架构体系。
 2. **[环境基准与多 Agent 集成 (01-installation-and-setup.md)](./01-installation-and-setup.md)**：提供了 Python 3.11+ / uv 工具链、主流 Agent 接入与存量工程引入指南。
-3. **[核心工作流全景实战 (02-core-workflow-sdd.md)](./02-core-workflow-sdd.md)**：深入剖析了 Constitution $\rightarrow$ Specify $\rightarrow$ Plan $\rightarrow$ Tasks $\rightarrow$ Implement 5 阶段模型。
+3. **[核心工作流全景实战 (02-core-workflow-sdd.md)](./02-core-workflow-sdd.md)**：深入剖析了 Constitution → Specify → Plan → Tasks → Implement 5 阶段模型。
 4. **[CLI 命令与技能速查手册 (03-cli-and-commands.md)](./03-cli-and-commands.md)**：提供了全量参数参考、Skills 触发词及故障排查矩阵。
 5. **[扩展生态与企业实战 (04-extensions-and-advanced.md)](./04-extensions-and-advanced.md)**：赋能了 Bug 修复、可行性评估、CI/CD 自动化门禁与大型 Monorepo 治理。
 

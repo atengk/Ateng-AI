@@ -113,7 +113,7 @@ _避免_: 锁定, 暂扣, 占用
 John Ousterhout 在经典著作《软件设计哲学》中指出：**优秀的模块必须是“深度”的（Deep Modules），即“通过极简精巧的对外接口，暴露出极其丰满强大的内在功能”**。相反，充斥着大泥球的代码库中，往往遍地都是“浅模块 (Shallow Modules)”——接口复杂庞大，内部却仅仅做了微不足道的透传。
 
 ```mermaid
-flowchart TB
+flowchart LR
     subgraph Shallow["浅模块 (Shallow Module) - 架构坏味道"]
         direction TB
         S_IF["复杂宽大的接口契约 (暴露 20+ 个细粒度公开方法)"]

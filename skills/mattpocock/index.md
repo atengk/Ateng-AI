@@ -41,7 +41,7 @@ Matt Pocock Skills 摒弃了由单一笨重框架接管一切的黑盒思路，�
 - **严格测试驱动 (Strict Test-Driven Development)**：在动手编写生产代码前，必须先建立能稳定复现失败的红灯测试，借助客观反馈速度作为研发的真实安全边界。
 
 ```mermaid
-flowchart TD
+flowchart LR
     subgraph Trap["氛围写代码的四大陷阱 (Vibe Coding Traps)"]
         direction TB
         T1["对齐失真<br>(Misalignment)"]

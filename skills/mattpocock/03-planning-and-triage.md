@@ -59,7 +59,7 @@ Matt Pocock 严格推崇《程序员修炼之道》中的**曳光弹开发理念
 - **即刻可验证**：每个 Ticket 落地后，哪怕仅支持最简陋的单一路径，代码也必须能够真实编译、运行并通过端到端测试。
 
 ```mermaid
-flowchart TD
+flowchart LR
     subgraph Horizontal["传统水平切层 (容易积压风险)"]
         direction TB
         H1["Ticket 1: 设计全部 5 张数据表 (无法独立运行)"]

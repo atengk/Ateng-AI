@@ -15,22 +15,24 @@
 随着 Agent Skills 赋予智能体执行脚本（Shell / Python）与直接读写本地文件的能力，其攻击面从传统的“模型越狱（Jailbreak）”延伸到了**代码执行层面的供应链安全与系统提权风险**。
 
 ```mermaid
-flowchart TD
+flowchart LR
     subgraph Attacks["攻击面与潜在威胁 (Threat Vectors)"]
+        direction TB
         IndirectInj["间接提示词注入 (Indirect Injection)<br/>(不可信数据文件篡改 SOP 控制流)"]
         SupplyChain["恶意技能供应链 (Supply Chain Attack)<br/>(第三方市场植入恶意脚本/后门)"]
         EnvLeak["敏感环境变量泄露 (Credential Exfiltration)<br/>(反弹 Shell 读取 .env / API Tokens)"]
     end
 
     subgraph Defense["三层纵深防御体系 (Defense-in-Depth)"]
+        direction TB
         L1Filter["L1: 语义与控制流强隔离<br/>(只读解析数据，禁止将外部数据作为指令)"]
         L2Audit["L2: 静态代码与依赖审计<br/>(Bandit/Semgrep 脚本扫描 + 来源白名单)"]
         L3Sandbox["L3: 容器沙箱与最小特权<br/>(只读根系统 + 网络出站白名单 + 隔离工作区)"]
     end
 
-    IndirectInj --> L1Filter
-    SupplyChain --> L2Audit
-    EnvLeak --> L3Sandbox
+    IndirectInj ==> L1Filter
+    SupplyChain ==> L2Audit
+    EnvLeak ==> L3Sandbox
 
     classDef att fill:#742a2a,stroke:#e53e3e,stroke-width:2px,color:#fff;
     classDef def fill:#2d5016,stroke:#4caf50,stroke-width:2px,color:#fff;

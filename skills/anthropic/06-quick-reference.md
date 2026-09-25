@@ -168,7 +168,7 @@ metadata:
 | **Marketplace 挂载语法** | `/plugin marketplace add anthropics/skills` | Claude Code CLI Docs | 已核实真实有效 |
 | **官方插件集合名称** | `document-skills@anthropic-agent-skills` | anthropics/skills 仓库 | 已核实真实有效 |
 | **YAML 必需字段契约** | `name` 与 `description` 为强制项，其余为可选扩展 | `agentskills.io` 核心规范 | 已核实真实有效 |
-| **渐进式披露三层模型** | Level 1 Discovery $\rightarrow$ Level 2 Activation $\rightarrow$ Level 3 Resources | Anthropic Engineering Blog | 已核实真实有效 |
+| **渐进式披露三层模型** | Level 1 Discovery → Level 2 Activation → Level 3 Resources | Anthropic Engineering Blog | 已核实真实有效 |
 | **单技能物理目录拓扑** | `SKILL.md` + 可选 `scripts/`、`references/`、`assets/` | `spec/agent-skills-spec.md` | 已核实真实有效 |
 | **跨平台标准目录路径** | `<repo>/.agents/skills/` 与 `<repo>/.claude/skills/` | Agent Skills Open Standard | 已核实真实有效 |
 | **元技能双裁判机制** | `grader.md` 规则打分 + `comparator.md` 双盲横向比对 | `skills/skill-creator` | 已核实真实有效 |

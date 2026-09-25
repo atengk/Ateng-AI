@@ -121,13 +121,13 @@ Anthropic 官方在推进 Agent Skills 时兼顾了**开放标准推广**与**�
 ### 2.2 角色化学习路线
 
 - **AI 最终用户 / 业务分析师**：
-  - 学习顺序：[index.md](./index.md) $\rightarrow$ [02-installation-and-runtime.md](./02-installation-and-runtime.md)（Claude.ai 部署） $\rightarrow$ [03-official-skills-catalog.md](./03-official-skills-catalog.md)
+  - 学习顺序：[index.md](./index.md) → [02-installation-and-runtime.md](./02-installation-and-runtime.md)（Claude.ai 部署） → [03-official-skills-catalog.md](./03-official-skills-catalog.md)
   - 核心目标：掌握如何将官方 Word/Excel/PPT 生成技能集成到日常生产力工作中。
 - **全栈开发与 Agent 应用工程师**：
-  - 学习顺序：[index.md](./index.md) $\rightarrow$ [01-architecture-and-spec.md](./01-architecture-and-spec.md) $\rightarrow$ [02-installation-and-runtime.md](./02-installation-and-runtime.md) $\rightarrow$ [04-skill-development-and-eval.md](./04-skill-development-and-eval.md)
+  - 学习顺序：[index.md](./index.md) → [01-architecture-and-spec.md](./01-architecture-and-spec.md) → [02-installation-and-runtime.md](./02-installation-and-runtime.md) → [04-skill-development-and-eval.md](./04-skill-development-and-eval.md)
   - 核心目标：在 Claude Code 或企业自建 Agent 中按标准规范编写自定义领域技能，建立自动化评测机制。
 - **企业安全与平台架构师**：
-  - 学习顺序：[01-architecture-and-spec.md](./01-architecture-and-spec.md) $\rightarrow$ [05-security-and-best-practices.md](./05-security-and-best-practices.md) $\rightarrow$ [06-quick-reference.md](./06-quick-reference.md)
+  - 学习顺序：[01-architecture-and-spec.md](./01-architecture-and-spec.md) → [05-security-and-best-practices.md](./05-security-and-best-practices.md) → [06-quick-reference.md](./06-quick-reference.md)
   - 核心目标：建立企业内训技能库的版本发布准入标准、防注入沙箱隔离防护机制。
 
 ---

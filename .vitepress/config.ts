@@ -1,5 +1,8 @@
+import { createRequire } from 'node:module'
 import {defineConfig} from 'vitepress'
 import {withMermaid} from 'vitepress-plugin-mermaid'
+
+const require = createRequire(import.meta.url)
 
 // https://vitepress.dev/reference/site-config
 export default withMermaid(
@@ -240,5 +243,18 @@ export default withMermaid(
     },
     // 死链处理策略
     ignoreDeadLinks: true,
+    vite: {
+        optimizeDeps: {
+            include: ['dayjs', 'mermaid']
+        },
+        resolve: {
+            alias: [
+                {
+                    find: /^dayjs$/,
+                    replacement: require.resolve('dayjs/esm/index.js')
+                }
+            ]
+        }
+    }
 }))
 

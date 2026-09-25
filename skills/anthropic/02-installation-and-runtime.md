@@ -140,7 +140,7 @@ Claude.ai 网页版与官方桌面客户端同样支持通过技能扩展模型�
 
 在 Claude.ai 中运行技能涉及代码执行与文件流处理，必须在前置设置中开启对应特权：
 
-1. 打开 **Settings (设置)** $\rightarrow$ **Capabilities / Features (功能特性)**。
+1. 打开 **Settings (设置)** → **Capabilities / Features (功能特性)**。
 2. 确保勾选 **"Code execution and file creation (代码执行与文件创建)"**。
    > [!IMPORTANT]
    > 官方 Office 文档技能（`docx`, `xlsx`, `pptx`, `pdf`）依赖底层容器沙箱中的 Python 运行时。若未开启代码执行功能，模型将只能输出静态文字说明，无法生成可下载的二进制物理文件。
