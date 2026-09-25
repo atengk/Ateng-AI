@@ -1,3 +1,7 @@
+---
+outline: [2, 2]
+---
+
 # Matt Pocock Skills 多场景组合协同与端到端实战
 
 | 属性 | 详情 |

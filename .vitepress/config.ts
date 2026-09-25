@@ -22,8 +22,8 @@ export default withMermaid(
                 text: 'Skills',
                 items: [
                     { text: '🧭 技能中心', link: '/skills/' },
-                    { text: '⚡ Anthropic 官方技能体系', link: '/skills/anthropic/' },
                     { text: '🛠️ Matt Pocock 技能套件', link: '/skills/mattpocock/' },
+                    { text: '⚡ Anthropic 官方技能体系', link: '/skills/anthropic/' },
                     { text: '🦸 Superpowers 自动化交付', link: '/skills/superpowers/' },
                     { text: '🌱 Spec Kit 规格驱动开发', link: '/skills/spec-kit/' }
                 ]
@@ -60,19 +60,6 @@ export default withMermaid(
                     ]
                 },
                 {
-                    text: 'Anthropic 官方技能体系',
-                    collapsed: false,
-                    items: [
-                        { text: '📖 全景导读与核心指南', link: '/skills/anthropic/' },
-                        { text: '🏛️ 架构原理与规范标准', link: '/skills/anthropic/01-architecture-and-spec' },
-                        { text: '⚡ 运行环境与安装部署', link: '/skills/anthropic/02-installation-and-runtime' },
-                        { text: '📚 官方技能全景与实战', link: '/skills/anthropic/03-official-skills-catalog' },
-                        { text: '🛠️ 技能开发与评测体系', link: '/skills/anthropic/04-skill-development-and-eval' },
-                        { text: '🛡️ 安全治理与最佳实践', link: '/skills/anthropic/05-security-and-best-practices' },
-                        { text: '📑 语法速查与参考矩阵', link: '/skills/anthropic/06-quick-reference' }
-                    ]
-                },
-                {
                     text: 'Matt Pocock 技能套件',
                     collapsed: false,
                     items: [
@@ -84,6 +71,19 @@ export default withMermaid(
                         { text: '🔍 深度调研与自动化向导', link: '/skills/mattpocock/05-research-and-devops' },
                         { text: '🤝 效能协作与文档编写', link: '/skills/mattpocock/06-productivity-and-collaboration' },
                         { text: '🚀 多场景组合协同与端到端实战', link: '/skills/mattpocock/07-composite-workflows-and-practical-scenarios' }
+                    ]
+                },
+                {
+                    text: 'Anthropic 官方技能体系',
+                    collapsed: false,
+                    items: [
+                        { text: '📖 全景导读与核心指南', link: '/skills/anthropic/' },
+                        { text: '🏛️ 架构原理与规范标准', link: '/skills/anthropic/01-architecture-and-spec' },
+                        { text: '⚡ 运行环境与安装部署', link: '/skills/anthropic/02-installation-and-runtime' },
+                        { text: '📚 官方技能全景与实战', link: '/skills/anthropic/03-official-skills-catalog' },
+                        { text: '🛠️ 技能开发与评测体系', link: '/skills/anthropic/04-skill-development-and-eval' },
+                        { text: '🛡️ 安全治理与最佳实践', link: '/skills/anthropic/05-security-and-best-practices' },
+                        { text: '📑 语法速查与参考矩阵', link: '/skills/anthropic/06-quick-reference' }
                     ]
                 },
                 {
